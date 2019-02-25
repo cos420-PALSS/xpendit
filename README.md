@@ -1,15 +1,10 @@
 # xpendit
 COS 420 Project
+Group 4: PALSS
 
-Everyone create a branch and write something on this file as a test. -MP
-
-
-Hello There!!!!!#
-Hi
-General Kenobi
-
-
-Okay let's try this again
-
-Testing - Aiden
-
+Members:
+- Matthew Prescott
+- Matthew Ackley
+- Aiden Lammert
+- Durgin Sweet
+- Joshua Schaff
