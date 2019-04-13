@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'domain.dart';
 
 int pageIndex = 0;
 
@@ -125,7 +126,7 @@ class ShoppingList extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 50.0, left: 10.0),
                 child: new Text("Shopping List",
                     style: new TextStyle(
-                        fontSize: 30.0, color: const Color(0xfff4f4f4))),
+                        fontSize: 25.0, color: const Color(0xfff4f4f4))),
               ),
               new Title()
             ],
