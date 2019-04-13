@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'domain.dart';
 
 int pageIndex = 0;
 
@@ -17,10 +18,52 @@ class XpenditApp extends StatelessWidget {
         theme: ThemeData(fontFamily: 'Open Sans'),
         title: "Xpendit",
         debugShowCheckedModeBanner: false,
-        home: Home());
+
+        home: new Page());
   }
 }
 
+//This class builds the page
+//The page index is the current page
+//It keeps the bottom nav bar static (doesn't reload on page change)
+class Page extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    if (pageIndex == 0) {
+      return new Scaffold(
+          body: Container(
+              child:
+              new Home()
+          ),
+          bottomNavigationBar: NavBar()
+      );
+    } else if(pageIndex == 1){
+      return new Scaffold(
+          body: Container(
+              child:
+              new Groups()
+          ),
+          bottomNavigationBar: NavBar()
+      );
+    } else if(pageIndex == 2){
+      return new Scaffold(
+          body: Container(
+              child:
+              new ShoppingList()
+          ),
+          bottomNavigationBar: NavBar()
+      );
+    } else if(pageIndex == 3){
+      return new Scaffold(
+          body: Container(
+              child:
+              new Balance()
+          ),
+          bottomNavigationBar: NavBar()
+      );
+    }
+  }
+}
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -41,7 +84,7 @@ class Home extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: NavBar());
+    );
   }
 }
 
@@ -65,7 +108,7 @@ class Groups extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: NavBar());
+    );
   }
 }
 
@@ -83,13 +126,13 @@ class ShoppingList extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 50.0, left: 10.0),
                 child: new Text("Shopping List",
                     style: new TextStyle(
-                        fontSize: 30.0, color: const Color(0xfff4f4f4))),
+                        fontSize: 25.0, color: const Color(0xfff4f4f4))),
               ),
               new Title()
             ],
           ),
         ),
-        bottomNavigationBar: NavBar());
+    );
   }
 }
 
@@ -113,7 +156,7 @@ class Balance extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: NavBar());
+    );
   }
 }
 
@@ -159,27 +202,10 @@ class _NavBar extends State<NavBar> {
         onTap: (int index) {
           setState(() {
             pageIndex = index;
-            if (index == 0) {
               Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Home()),
-              );
-            } else if (index == 1) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Groups()),
-              );
-            } else if (index == 2) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ShoppingList()),
-              );
-            } else if (index == 3) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Balance()),
-              );
-            }
+              context,
+              MaterialPageRoute(builder: (context) => Page()),
+            );
           });
         },
         //nav bar items
