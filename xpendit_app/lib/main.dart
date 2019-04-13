@@ -201,6 +201,10 @@ class _NavBar extends State<NavBar> {
         onTap: (int index) {
           setState(() {
             pageIndex = index;
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Page()),
+            );
           });
         },
         //nav bar items
