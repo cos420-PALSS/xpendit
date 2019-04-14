@@ -1,3 +1,5 @@
+
+// our psuedo-account information we're using until we properly get multiple account working
 class Person {
   String name;
   String emailAddress;
@@ -37,33 +39,44 @@ class Person {
     phoneNumber = newPhoneNumber;
   }
 }
-
+//a user account
 class Account {
   String username;
   String password;
   String emailAddress;
+  //List to hold all of the debts associated with an account
+  List<Charge> debts = [];
+
 
   double sumCharges() {
     double sum = 0;
-    Charge chargeName;
-    while(chargeName.getAmount() != null) {
-      if((chargeName.getRecipients()).contains(username)) {
-        sum += chargeName.getAmount();
-      }
-      // somehow need to traverse all charge objects here
+    //get the sum by iteration over the Charges in the debt list
+    for(int x = 0; x< debts.length; x++){
+      sum += debts[x].getAmount();
     }
     return sum;
   }
+  // Whenever we cal/ this , we should make sure that the Charge is pulled from
+  // the debts list, or the remove function may start doing weird stuff
 
   void payCharge(Charge chargeName, double paymentAmount) {
     chargeName.setAmount(chargeName.getAmount()-paymentAmount);
+    //If the charge's amount is now zero and charge doesnt repeat,
+    //remove charge from lists
+    if(chargeName.getAmount() == 0 && !chargeName.recursive){
+      debts.remove(chargeName);
+      for(int x = 0; x < chargeName.getRecipients().length;x++){
+        chargeName.getRecipients()[x].removeCharge(chargeName);
+      }
+
+    }
   }
 
   void displayCharge(Charge chargeName) {
     var title = chargeName.getTitle();
     var amount = chargeName.getAmount();
     var age = chargeName.getAge();
-    var initiator = chargeName.getInitiator();
+    var initiator = chargeName.getInitiator().getUsername();
 
     print('Charge Name: $title');
     print('Amount: $amount');
@@ -84,8 +97,25 @@ class Account {
   void setEmailAddress(newEA) {
     emailAddress = newEA;
   }
-  void setAddress(newPassword) {
+  void setPassword(newPassword) {
     password = newPassword;
+  }
+
+  void addCharge(Charge newCharge){
+    debts.add(newCharge);
+  }
+  void removeCharge(Charge oldCharge){
+    debts.remove(oldCharge);
+  }
+
+  //creates a new charge and goes through to add it to the debt list of everyone
+  void makeCharge( String reason, List<Account> recipients, double amount, bool recursive,){
+    Charge newCharge = new Charge(reason, amount, this, recipients, recursive);
+    addCharge(newCharge);
+    for(int x = 0; x < recipients.length; x++){
+      recipients[x].addCharge(newCharge);
+    }
+
   }
 
   Account(String user, String pass, String email) {
@@ -95,13 +125,13 @@ class Account {
   }
 
 }
-
+//Class for a single charge
 class Charge {
   String title;
   double amount;
   DateTime dateOfCreation;
-  String initiator;
-  String recipients;
+  Account initiator;
+  List<Account> recipients;
   bool recursive;
 
   String getTitle() {
@@ -113,10 +143,10 @@ class Charge {
   DateTime getAge() {
     return dateOfCreation;
   }
-  String getInitiator() {
+  Account getInitiator() {
     return initiator;
   }
-  String getRecipients() {
+  List<Account> getRecipients() {
     return recipients;
   }
   bool isRecursive() {
@@ -127,7 +157,7 @@ class Charge {
     amount = dollas;
   }
 
-  Charge(String name, double dollas, String initUsername, String recipUsernames, bool recurse) {
+  Charge(String name, double dollas, Account initUsername, List<Account> recipUsernames, bool recurse) {
     title = name;
     amount = dollas;
     initiator = initUsername;
