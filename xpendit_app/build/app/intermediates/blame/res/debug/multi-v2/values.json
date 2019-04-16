@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Matt\\Documents\\GitHub\\xpendit\\xpendit_app\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\Dsweet\\Desktop\\xpendit\\xpendit_app\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Matt\\Documents\\GitHub\\xpendit\\xpendit_app\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\Dsweet\\Desktop\\xpendit\\xpendit_app\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

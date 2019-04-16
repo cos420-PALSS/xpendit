@@ -1,4 +1,4 @@
-
+import 'rooms.dart';
 // our psuedo-account information we're using until we properly get multiple account working
 class Person {
   String name;
@@ -104,19 +104,12 @@ class Account {
   void addCharge(Charge newCharge){
     debts.add(newCharge);
   }
+
   void removeCharge(Charge oldCharge){
     debts.remove(oldCharge);
   }
 
-  //creates a new charge and goes through to add it to the debt list of everyone
-  void makeCharge( String reason, List<Account> recipients, double amount, bool recursive,){
-    Charge newCharge = new Charge(reason, amount, this, recipients, recursive);
-    addCharge(newCharge);
-    for(int x = 0; x < recipients.length; x++){
-      recipients[x].addCharge(newCharge);
-    }
 
-  }
 
   Account(String user, String pass, String email) {
     username = user;
@@ -133,6 +126,7 @@ class Charge {
   Account initiator;
   List<Account> recipients;
   bool recursive;
+  Room chargeRoom;
 
   String getTitle() {
     return title;
@@ -152,17 +146,21 @@ class Charge {
   bool isRecursive() {
     return recursive;
   }
+  Room getRoom(){
+    return chargeRoom;
+  }
 
   void setAmount(double dollas) {
     amount = dollas;
   }
 
-  Charge(String name, double dollas, Account initUsername, List<Account> recipUsernames, bool recurse) {
+  Charge(String name, double dollas, Account initUsername, List<Account> recipUsernames, bool recurse, Room room) {
     title = name;
     amount = dollas;
     initiator = initUsername;
     recipients = recipUsernames;
     recursive = recurse;
     dateOfCreation = DateTime.now();
+    chargeRoom = room;
   }
 }
