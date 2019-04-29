@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'domain.dart';
+import 'login_page.dart';
 
 int pageIndex = 0;
 
@@ -33,7 +34,7 @@ class Page extends StatelessWidget{
       return new Scaffold(
           body: Container(
               child:
-              new Home()
+              new LoginPage() //home page currently serving as login page
           ),
           bottomNavigationBar: NavBar()
       );
