@@ -1,7 +1,12 @@
+import 'domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+<<<<<<< HEAD
 import 'domain.dart';
 import 'login_page.dart';
+=======
+
+>>>>>>> sweet
 
 int pageIndex = 0;
 
@@ -19,7 +24,6 @@ class XpenditApp extends StatelessWidget {
         theme: ThemeData(fontFamily: 'Open Sans'),
         title: "Xpendit",
         debugShowCheckedModeBanner: false,
-
         home: new Page());
   }
 }
