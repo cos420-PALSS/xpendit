@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "983130553731",
+    "firebase_url": "https://xpendit-8393a.firebaseio.com",
+    "project_id": "xpendit-8393a",
+    "storage_bucket": "xpendit-8393a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983130553731:android:0c9b8b0eb309ff12",
+        "android_client_info": {
+          "package_name": "com.PALSS.Xpendit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983130553731-5hgj6hqlai26aea10jjtidg5a54c3n0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXZPoiMxtqguNxfMB58RaTWiiPF8k5O98"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983130553731-5hgj6hqlai26aea10jjtidg5a54c3n0k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

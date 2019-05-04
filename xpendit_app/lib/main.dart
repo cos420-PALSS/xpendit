@@ -1,12 +1,9 @@
-import 'domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-<<<<<<< HEAD
 import 'domain.dart';
 import 'login_page.dart';
-=======
-
->>>>>>> sweet
+import 'auth.dart';
+import 'root_page.dart';
 
 int pageIndex = 0;
 
@@ -24,7 +21,9 @@ class XpenditApp extends StatelessWidget {
         theme: ThemeData(fontFamily: 'Open Sans'),
         title: "Xpendit",
         debugShowCheckedModeBanner: false,
-        home: new Page());
+
+        home: new RootPage(auth: new Auth())
+    );
   }
 }
 
@@ -38,7 +37,9 @@ class Page extends StatelessWidget{
       return new Scaffold(
           body: Container(
               child:
-              new LoginPage() //home page currently serving as login page
+              //currently have the login page set as the home page for testing
+
+              new Home()
           ),
           bottomNavigationBar: NavBar()
       );
