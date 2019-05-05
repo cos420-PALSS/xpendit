@@ -2,10 +2,25 @@ import 'domain.dart';
 import 'rooms.dart';
 
 
+class localTestingInformation{
+  //temporary local files until attached to a firebase or and database
+  Person testLocalPerson0 = new Person("Harold Smith", 'HSmith@gmail.com', '123 Real Lane', '5415986342');
+  Account testLocalUser0 = new Account('Harold12', 'securePassw0rd', 'HSmith@gmail.com');
 
-void main(){
+  Person testLocalPerson1 = new Person("Jenny Martha", 'JennyM@gmail.com', '321 Legit Street', '1234567891');
+  Account testLocalUser1 = new Account('JennyGurl', 'g0odP@ssword', 'JennyM@gmail.com');
 
+  List<Account> testList = new List<Account>();
+
+  String getName(){
+    return testLocalPerson0.getName();
+  }
+
+//testLocalRoom.makeCharge('Testing', testLocalUser0, testLocalRoom.getUserList(), 500, false);
 }
+
+
+
 
 //temporary account "database"
 List<Account> accountDatabase = new List<Account>();
@@ -37,6 +52,7 @@ Account getUser(String email, String password){
       return null;
     }
   }
+  return null;
 }
 
 Account findUser(String username){
@@ -48,6 +64,7 @@ Account findUser(String username){
       return null;
     }
   }
+  return null;
 }
 
 Account findUserEmail(String email){
@@ -59,7 +76,5 @@ Account findUserEmail(String email){
       return null;
     }
   }
+  return null;
 }
-
-
-

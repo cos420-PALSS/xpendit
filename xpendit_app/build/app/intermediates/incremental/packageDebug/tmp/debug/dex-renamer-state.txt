@@ -1,4 +1,4 @@
-#Sun May 05 12:56:44 EDT 2019
-base.0=C\:\\Users\\Joshua Schaff\\Documents\\GitHub\\xpendit\\xpendit_app\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+#Sun May 05 17:01:20 EDT 2019
+base.0=C\:\\Stuff\\DesktopShite\\Most Recent\\xpendit_app\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex
