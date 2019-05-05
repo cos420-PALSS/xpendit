@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'auth.dart';
 import 'home_page.dart';
+import 'main.dart';
 
 
 //Intermediate page between homepage and login/register page
@@ -33,7 +34,7 @@ class _RootPAgeState extends State<RootPage>{
     super.initState();
     widget.auth.currentUser().then((userId) {
       setState(() {
-        _authStatus = userId == null ? AuthStatus.notSignedin : AuthStatus.signedIn;
+        //_authStatus = userId == null ? AuthStatus.notSignedin : AuthStatus.signedIn;
       });
     });
   }
@@ -60,10 +61,7 @@ class _RootPAgeState extends State<RootPage>{
             auth: widget.auth,
         onSignedIn: _signedIn);
       case AuthStatus.signedIn:
-        return new HomePage(
-          auth: widget.auth,
-          onSignedOut: _signedOut,
-        );
+        return new Page();
     }
   }
 }
