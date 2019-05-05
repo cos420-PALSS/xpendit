@@ -1,4 +1,6 @@
 import 'rooms.dart';
+import 'temp_databases.dart';
+
 // our psuedo-account information we're using until we properly get multiple account working
 class Person {
   String name;
@@ -39,6 +41,7 @@ class Person {
     phoneNumber = newPhoneNumber;
   }
 }
+
 //a user account
 class Account {
   String username;
@@ -46,6 +49,8 @@ class Account {
   String emailAddress;
   //List to hold all of the debts associated with an account
   List<Charge> debts = [];
+  List<Room> rooms = [];
+
 
 
   double sumCharges() {
@@ -104,20 +109,39 @@ class Account {
   void addCharge(Charge newCharge){
     debts.add(newCharge);
   }
-
   void removeCharge(Charge oldCharge){
     debts.remove(oldCharge);
   }
 
+  //creates a new charge and goes through to add it to the debt list of everyone
+  void makeCharge( String reason, List<Account> recipients, double amount, bool recursive,){
+    Charge newCharge = new Charge(reason, amount, this, recipients, recursive);
+    addCharge(newCharge);
+    for(int x = 0; x < recipients.length; x++){
+      recipients[x].addCharge(newCharge);
+    }
 
+  }
 
   Account(String user, String pass, String email) {
     username = user;
     password = pass;
     emailAddress = email;
   }
+  
+  void createRoom(){
+    List<Account> users;
+    Room testRoom = new Room(users, 'TestName', null);
+    rooms.add(testRoom);
+    roomDatabase.add(testRoom);
+
+  }
 
 }
+
+
+
+
 //Class for a single charge
 class Charge {
   String title;
@@ -126,7 +150,6 @@ class Charge {
   Account initiator;
   List<Account> recipients;
   bool recursive;
-  Room chargeRoom;
 
   String getTitle() {
     return title;
@@ -146,21 +169,17 @@ class Charge {
   bool isRecursive() {
     return recursive;
   }
-  Room getRoom(){
-    return chargeRoom;
-  }
 
   void setAmount(double dollas) {
     amount = dollas;
   }
 
-  Charge(String name, double dollas, Account initUsername, List<Account> recipUsernames, bool recurse, Room room) {
+  Charge(String name, double dollas, Account initUsername, List<Account> recipUsernames, bool recurse) {
     title = name;
     amount = dollas;
     initiator = initUsername;
     recipients = recipUsernames;
     recursive = recurse;
     dateOfCreation = DateTime.now();
-    chargeRoom = room;
   }
 }

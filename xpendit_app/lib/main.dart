@@ -1,12 +1,9 @@
-import 'domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-<<<<<<< HEAD
 import 'domain.dart';
 import 'login_page.dart';
-=======
-
->>>>>>> sweet
+import 'auth.dart';
+import 'root_page.dart';
 
 int pageIndex = 0;
 
@@ -24,7 +21,9 @@ class XpenditApp extends StatelessWidget {
         theme: ThemeData(fontFamily: 'Open Sans'),
         title: "Xpendit",
         debugShowCheckedModeBanner: false,
-        home: new Page());
+
+        home: new RootPage(auth: new Auth())
+    );
   }
 }
 
@@ -38,7 +37,9 @@ class Page extends StatelessWidget{
       return new Scaffold(
           body: Container(
               child:
-              new LoginPage() //home page currently serving as login page
+              //currently have the login page set as the home page for testing
+
+              new Home()
           ),
           bottomNavigationBar: NavBar()
       );
@@ -70,6 +71,20 @@ class Page extends StatelessWidget{
   }
 }
 class Home extends StatelessWidget {
+
+  Home({this.auth, this.onSignedOut});
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+
+  void _signOut() async {
+    try {
+      await auth.signOut();
+      onSignedOut();
+    } catch (e){
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -85,10 +100,27 @@ class Home extends StatelessWidget {
                     style: new TextStyle(
                         fontSize: 30.0, color: const Color(0xfff4f4f4))),
               ),
+
               new Title()
             ],
           ),
         ),
+      bottomSheet: new Container(
+        child:  Row(
+          children: <Widget>[
+            new FlatButton(
+              child: new Text('Logout', style: new TextStyle(fontSize: 17.0, color: Colors.pink)),
+              //signout doesnt work anymore and I have no clue why - Josh
+              onPressed: _signOut
+            ),
+            new FlatButton(
+                child: new Text('Alert Test', style: new TextStyle(fontSize: 17.0, color: Colors.pink)),
+                //signout doesnt work anymore and I have no clue why - Josh
+                onPressed: null
+            ),
+          ],
+        ),
+      )
     );
   }
 }
@@ -168,6 +200,7 @@ class Balance extends StatelessWidget {
 class Title extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return new Container(
       margin: const EdgeInsets.only(top: 30, right: 10),
       //alignment: Alignment.topRight,
@@ -176,6 +209,7 @@ class Title extends StatelessWidget {
         style: new TextStyle(fontSize: 45.0, color: const Color(0xfffc7eb7)),
       ),
     );
+
   }
 }
 
