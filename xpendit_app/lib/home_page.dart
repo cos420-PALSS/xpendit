@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 import 'auth.dart';
 
+//Old homepage from testing creation. Logout stopped working here too
 class HomePage extends StatelessWidget {
 
-  HomePage({this.auth, this.onSignedOut});
-  final BaseAuth auth;
-  final VoidCallback onSignedOut;
 
-  void _signOut() async {
-    try {
-      await auth.signOut();
-      onSignedOut();
-    } catch (e){
-      print(e);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +14,7 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           new FlatButton(
             child: new Text('Logout', style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-            onPressed: _signOut
+            //onPressed: _signOut
           )
         ],
       ),

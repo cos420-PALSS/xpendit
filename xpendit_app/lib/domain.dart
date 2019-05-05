@@ -1,3 +1,5 @@
+import 'rooms.dart';
+import 'temp_databases.dart';
 
 // our psuedo-account information we're using until we properly get multiple account working
 class Person {
@@ -39,6 +41,7 @@ class Person {
     phoneNumber = newPhoneNumber;
   }
 }
+
 //a user account
 class Account {
   String username;
@@ -46,6 +49,8 @@ class Account {
   String emailAddress;
   //List to hold all of the debts associated with an account
   List<Charge> debts = [];
+  List<Room> rooms = [];
+
 
 
   double sumCharges() {
@@ -123,8 +128,20 @@ class Account {
     password = pass;
     emailAddress = email;
   }
+  
+  void createRoom(){
+    List<Account> users;
+    Room testRoom = new Room(users, 'TestName', null);
+    rooms.add(testRoom);
+    roomDatabase.add(testRoom);
+
+  }
 
 }
+
+
+
+
 //Class for a single charge
 class Charge {
   String title;
